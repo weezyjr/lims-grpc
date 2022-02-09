@@ -6,8 +6,8 @@
 	"proto_path": "./src/proto",
 	"scripts": {
 		"build": "tsc",
-		"client": "ts-node: ./src/client.ts",
-		"server": "ts-node: ./src/server.ts",
+		"client": "ts-node ./src/client.ts",
+		"server": "ts-node ./src/server.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build:proto": "npx grpc_tools_node_protoc --plugin=protoc-gen-ts=$(npm bin)/protoc-gen-ts --ts_out=grpc_js:./src/proto/packages --js_out=import_style=commonjs,binary:./src/proto/packages --grpc_out=grpc_js:./src/proto/packages -I ./src/proto ./src/proto/*.proto",
 		"build:proto:models": "$(npm bin)/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/proto/models ./src/proto/*.proto"
