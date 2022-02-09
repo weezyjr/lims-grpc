@@ -1,0 +1,37 @@
+{
+	"name": "lims-grpc",
+	"version": "1.0.0",
+	"description": "gRPC playground",
+	"main": "dist/server.js",
+	"proto_path": "./src/proto",
+	"scripts": {
+		"build": "tsc",
+		"client": "ts-node: ./src/client.ts",
+		"server": "ts-node: ./src/server.ts",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:proto": "npx grpc_tools_node_protoc --plugin=protoc-gen-ts=$(npm bin)/protoc-gen-ts --ts_out=grpc_js:./src/proto/packages --js_out=import_style=commonjs,binary:./src/proto/packages --grpc_out=grpc_js:./src/proto/packages -I ./src/proto ./src/proto/*.proto",
+		"build:proto:models": "$(npm bin)/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=./src/proto/models ./src/proto/*.proto"
+	},
+	"keywords": [
+		"gRPC"
+	],
+	"author": "weezyjr",
+	"license": "ISC",
+	"dependencies": {
+		"@grpc/grpc-js": "^1.5.4",
+		"@grpc/proto-loader": "^0.6.9",
+		"dotenv": "^16.0.0",
+		"google-protobuf": "^3.19.4",
+		"grpc": "^1.24.11",
+		"grpc_tools_node_protoc_ts": "^5.3.2",
+		"grpc-tools": "^1.11.2"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"editorconfig": "^0.15.3",
+		"nodemon": "^2.0.14",
+		"prettier": "^2.4.1",
+		"ts-node": "^10.5.0",
+		"typescript": "^4.5.5"
+	}
+}
